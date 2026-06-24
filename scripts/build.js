@@ -93,6 +93,30 @@ function linkToProduct(product) {
   return `/products/${product.slug}/`;
 }
 
+const ICONS = {
+  accounting: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 6h8"/><path d="M16 14v4"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>`,
+  crm: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  email: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`,
+  forms: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>`,
+  invoicing: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6"/><path d="M16 12h-6"/><path d="M16 16h-6"/><path d="M8 8h.01"/><path d="M8 12h.01"/><path d="M8 16h.01"/></svg>`,
+  layers: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.84l8.57 3.9a2 2 0 0 0 1.66 0l8.57-3.9a1 1 0 0 0 0-1.84z"/><path d="m22 12.5-8.57 3.9a2 2 0 0 1-1.66 0L3.2 12.5"/><path d="m22 17.5-8.57 3.9a2 2 0 0 1-1.66 0L3.2 17.5"/></svg>`,
+  payments: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg>`,
+  scheduling: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>`,
+  software: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect width="18" height="14" x="3" y="4" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M8 9h.01"/><path d="M12 9h4"/><path d="M8 13h.01"/><path d="M12 13h4"/></svg>`
+};
+
+function iconSvg(name) {
+  return ICONS[name] || ICONS.software;
+}
+
+function brandLogoSvg() {
+  return `<svg viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false"><path d="M16 4.25 27 9.15 16 14.05 5 9.15 16 4.25Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M26 15.1 16 19.55 6 15.1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/><path d="M26 20.85 16 25.3 6 20.85" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/><path d="M16 14.1v11.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".55"/><circle cx="16" cy="4.25" r="1.6" fill="currentColor"/><circle cx="27" cy="9.15" r="1.25" fill="currentColor" opacity=".75"/><circle cx="5" cy="9.15" r="1.25" fill="currentColor" opacity=".75"/></svg>`;
+}
+
+function iconForCategory(category) {
+  return iconSvg(category || "software");
+}
+
 function commercialLink(product, label = "Visit official site") {
   const isAffiliate = Boolean(product.affiliateUrl);
   const href = isAffiliate ? product.affiliateUrl : product.website;
@@ -149,7 +173,7 @@ function layout({ title, description, route, body, pageKind = "standard", requir
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="/" aria-label="${escapeHtml(site.siteName)} home">
-        <span class="brand-mark" aria-hidden="true">SS</span>
+        <span class="brand-mark" aria-hidden="true">${brandLogoSvg()}</span>
         <span>
           <strong>${escapeHtml(site.siteName)}</strong>
           <small>${escapeHtml(site.tagline)}</small>
@@ -185,7 +209,7 @@ function productCard(product, options = {}) {
   return `
     <article class="product-card">
       <div class="card-topline">
-        <span class="product-icon" aria-hidden="true">${escapeHtml(product.name.slice(0, 2).toUpperCase())}</span>
+        <span class="product-icon" aria-hidden="true">${iconForCategory(product.categories[0])}</span>
         <span>${escapeHtml(product.categories.map(categoryLabel).join(" + "))}</span>
       </div>
       <h3><a href="${linkToProduct(product)}">${escapeHtml(product.name)}</a></h3>
@@ -237,7 +261,7 @@ function homePage() {
       const count = articles.filter((article) => article.category === category).length;
       return `
         <a class="category-card" href="/categories/${category}/" data-category="${escapeHtml(category)}">
-          <span class="category-symbol" aria-hidden="true">${escapeHtml(details.label.slice(0, 1))}</span>
+          <span class="category-symbol" aria-hidden="true">${iconForCategory(category)}</span>
           <strong>${escapeHtml(details.label)}</strong>
           <span>${escapeHtml(details.description)}</span>
           <small>${count} buying guides</small>
@@ -247,6 +271,7 @@ function homePage() {
 
   const body = `
     <section class="hero-band">
+      <canvas class="hero-canvas" id="stack-map-canvas" aria-hidden="true"></canvas>
       <div class="hero-grid">
         <div>
           <p class="eyebrow">Small business software selector</p>
