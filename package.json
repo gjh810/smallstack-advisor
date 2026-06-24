@@ -1,0 +1,20 @@
+{
+  "name": "small-business-software-selector",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A static affiliate-ready content site for small business software comparisons.",
+  "type": "commonjs",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "check:compliance": "node scripts/check-compliance.js",
+    "check:links": "node scripts/check-links.js",
+    "audit:sources": "node scripts/source-audit.js",
+    "report:daily": "node scripts/report.js daily",
+    "report:weekly": "node scripts/report.js weekly",
+    "serve": "node scripts/serve.js",
+    "verify": "npm run build && npm run check:compliance && npm run check:links"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
