@@ -1,0 +1,33 @@
+name: Site automation
+
+on:
+  push:
+    branches: ["main"]
+  schedule:
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+
+jobs:
+  verify-and-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Build site
+        run: npm run build
+      - name: Compliance check
+        run: npm run check:compliance
+      - name: Internal link check
+        run: npm run check:links
+      - name: Source audit
+        run: npm run audit:sources
+      - name: Daily report
+        run: npm run report:daily
+      - name: Weekly report
+        run: npm run report:weekly
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site-automation-reports
+          path: reports/
