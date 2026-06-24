@@ -1,0 +1,45 @@
+{
+  "siteName": "SmallStack Advisor",
+  "tagline": "Choose practical software for a small business stack.",
+  "baseUrl": "https://smallstackadvisor.top",
+  "contactEmail": "contact@smallstackadvisor.top",
+  "analytics": {
+    "googleAnalyticsId": "",
+    "searchConsoleVerification": ""
+  },
+  "newsletter": {
+    "provider": "Static fallback",
+    "formActionUrl": "/checklist/",
+    "method": "get"
+  },
+  "categories": {
+    "scheduling": {
+      "label": "Scheduling",
+      "description": "Booking tools for calls, appointments, staff calendars, deposits, reminders, and local service workflows."
+    },
+    "invoicing": {
+      "label": "Invoicing",
+      "description": "Invoice and billing tools for freelancers, consultants, service businesses, and growing teams."
+    },
+    "accounting": {
+      "label": "Accounting",
+      "description": "Small-business accounting platforms for invoices, expenses, reconciliation, reporting, and accountant collaboration."
+    },
+    "crm": {
+      "label": "CRM",
+      "description": "Customer relationship tools for lead tracking, follow-up, pipelines, contacts, and email-connected workflows."
+    },
+    "email": {
+      "label": "Email Marketing",
+      "description": "Newsletter and automation tools for consent-based campaigns, forms, segmentation, and customer nurture."
+    },
+    "forms": {
+      "label": "Forms",
+      "description": "Form builders for intake, lead capture, surveys, payments, approvals, and simple client workflows."
+    },
+    "payments": {
+      "label": "Payments",
+      "description": "Payment-enabled tools for bookings, invoices, deposits, and lightweight checkout flows."
+    }
+  }
+}
